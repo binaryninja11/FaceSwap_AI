@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 from app.models.dbmodel import Base
 
-DATABASE_URL = "sqlite:///./sql_app.db"  # Use your database URL
+DATABASE_URL = "sqlite:///./app/sql_app.db"  # Use your database URL
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 
