@@ -31,7 +31,6 @@ async def base_to_file(base64_str: str) -> bytes:
 
 async def get_category(
     category_name: str = Form(...),
-    title: str= Form(...),
     description: str= Form(...),
     skill: List[str]= Form(...),
     file: UploadFile = File(...),
@@ -47,7 +46,6 @@ async def get_category(
             db,
             schema.CreateCategory(
                 category_name=category_name,
-                title=title,
                 description=description,
                 skill=skill[0]
             )

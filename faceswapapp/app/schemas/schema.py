@@ -4,7 +4,6 @@ from pydantic import BaseModel, Field
 
 class CategoryBase(BaseModel):
     category_name: str
-    title: str
     main_image_id: Optional[int] = None
     description: str
     skill: str = None
@@ -38,7 +37,6 @@ class Image(CreateImage):
 class ReturnCategory(BaseModel):
     id: int
     category_name: str
-    title: str
     main_image: Optional[str] = None
     description: str
     skill: List[str]

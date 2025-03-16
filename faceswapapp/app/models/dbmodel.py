@@ -10,7 +10,6 @@ class Category(Base):
     __tablename__ = "category"
     id = Column(Integer, primary_key=True, index=True)
     category_name = Column(String, unique=True, index=True, nullable=False)
-    title = Column(String, unique=True, index=True, nullable=True)
     main_image_id = Column(Integer, ForeignKey("image_main.id", onupdate="CASCADE"), index=True, nullable=True)
     description = Column(String, index=True, nullable=True)
     skill = Column(String,index=True, nullable=True)

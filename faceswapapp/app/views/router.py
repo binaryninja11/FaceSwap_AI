@@ -33,7 +33,6 @@ async def get_category(category_id: int, db: Session = Depends(get_db)):
         response_data = {
             "id": category_obj.id,
             "category_name": category_obj.category_name,
-            "title": category_obj.title,
             # Instead of assigning to the relationship, we set a separate key
             "main_image": main_img_obj.name_base64 if main_img_obj else None,
             "description": category_obj.description,
@@ -125,7 +124,7 @@ async def change_main_img(category_id: int, file: UploadFile = File(...), db: Se
         raise HTTPException(status_code=500, detail="Server error")
 
 # ✅ Create image for category +
-@router.post("/image/{category_id}", response_model=schema.Image)
+@router.post("/image/{category_id}")
 async def create_img(category_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)):
     base64_img = await task.file_to_base(file)
 
@@ -146,7 +145,7 @@ async def create_img(category_id: int, file: UploadFile = File(...), db: Session
 
         new_image = await run_in_threadpool(crud.create_image, db, img_data)
 
-        return new_image
+        return "Image created successfully"
     except HTTPException as http_exc:
         raise http_exc
     except SQLAlchemyError as e:

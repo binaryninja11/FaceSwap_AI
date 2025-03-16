@@ -7,7 +7,6 @@ def create_category(db: Session, ct: CreateCategory):
     try:
         new_category = Category(
             category_name=ct.category_name,
-            title=ct.title,
             main_image_id=ct.main_image_id,
             description=ct.description,
             skill=ct.skill  # This will trigger the setter
